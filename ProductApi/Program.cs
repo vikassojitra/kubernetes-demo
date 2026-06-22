@@ -17,6 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
+app.MapGet("Health", () => Results.Ok("Healthy"));
+
 app.MapControllers();
 
 app.Run();
