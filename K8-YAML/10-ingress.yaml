@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: api-ingress
+  namespace: k8-nagp-demo-ns
+
+spec:
+  ingressClassName: nginx
+
+  rules:
+  - host: api.demo.local
+
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+
+        backend:
+          service:
+            name: api-service
+
+            port:
+              number: 80

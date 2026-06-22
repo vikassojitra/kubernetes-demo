@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-api-deployment
+  namespace: k8-nagp-demo-ns
+  labels:
+        app: product-api-app
+        type: api
+  
+spec:
+  selector:
+    matchLabels:
+      app: product-api-app
+
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 1
+
+  template:
+    metadata:
+      name: product-api-pod
+      labels:
+        app: product-api-app
+
+    spec:
+      containers:
+      - name: product-api-container
+        image: vikassojitra/productapi-k8-demo:v1
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+        env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: DB_HOST
+
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: DB_NAME
+
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: DB_USER
+
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_PASSWORD
+
+        - name: ConnectionStrings__ProductDb
+          value: "Server=$(DB_HOST);Database=$(DB_NAME);User Id=$(DB_USER);Password=$(DB_PASSWORD);TrustServerCertificate=True;"

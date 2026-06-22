@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: sqlserver
+  namespace: k8-nagp-demo-ns
+
+spec:
+  serviceName: sqlserver
+
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: sqlserver
+
+  template:
+    metadata:
+      labels:
+        app: sqlserver
+
+    spec:
+      containers:
+      - name: sqlserver
+
+        image: mcr.microsoft.com/mssql/server:2022-latest
+
+        ports:
+        - containerPort: 1433
+
+        env:
+        - name: ACCEPT_EULA
+          value: "Y"
+
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sql-secret
+              key: SA_PASSWORD
+
+        volumeMounts:
+        - name: mssql-data
+          mountPath: /var/opt/mssql
+
+  volumeClaimTemplates:
+  - metadata:
+      name: mssql-data
+
+    spec:
+      accessModes:
+      - ReadWriteOnce
+
+      resources:
+        requests:
+          storage: 10Mi
