@@ -4,7 +4,10 @@ kind: Service
 metadata:
   name: product-api-service
   namespace: k8-nagp-demo-ns
-
+  annotations:
+    # CRITICAL FOR GKE INGRESS: Enables Container-Native Load Balancing
+    cloud.google.com/neg: '{"ingress": true}'
+    
 spec:
   selector:
     app: product-api-app
