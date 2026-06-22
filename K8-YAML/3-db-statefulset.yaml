@@ -20,6 +20,8 @@ spec:
         app: sqlserver
 
     spec:
+      securityContext:
+        fsGroup: 10001
       containers:
       - name: sqlserver
 
@@ -35,8 +37,8 @@ spec:
         - name: MSSQL_SA_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: sql-secret
-              key: SA_PASSWORD
+              name: db-secret
+              key: DB_PASSWORD
 
         volumeMounts:
         - name: mssql-data
