@@ -2,6 +2,7 @@
 {
     public class Product
     {
+        public string Version { get; set; } = "Version-1";
         public int Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
