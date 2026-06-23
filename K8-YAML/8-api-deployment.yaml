@@ -17,7 +17,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
         maxSurge: 1
-        maxUnavailable: 0
+        maxUnavailable: 1
 
   template:
     metadata:
@@ -28,7 +28,8 @@ spec:
     spec:
       containers:
       - name: product-api-container
-        image: vikassojitra/productapi-k8-demo:v1
+        image: vikassojitra/productapi-k8-demo:api-v1
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: "100m"
@@ -36,8 +37,22 @@ spec:
           limits:
             cpu: "500m"
             memory: "512Mi"
+        
+        ports:
+        - containerPort: 8080
+          name: http
+          
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 3
 
         env:
+        - name: ASPNETCORE_URLS
+          value: "http://+:8080"
         - name: DB_HOST
           valueFrom:
             configMapKeyRef:

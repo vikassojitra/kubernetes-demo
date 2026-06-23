@@ -3,11 +3,9 @@ kind: Ingress
 metadata:
   name: product-api-ingress
   namespace: k8-nagp-demo-ns
-  annotations:
-    # Provisions an External Google Cloud HTTP(S) Application Load Balancer
-    kubernetes.io/ingress.class: "gce"
     
 spec:
+  ingressClassName: "gce"
   rules:
   - http:
       paths:
