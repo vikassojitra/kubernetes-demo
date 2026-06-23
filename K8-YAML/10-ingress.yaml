@@ -5,7 +5,7 @@ metadata:
   namespace: k8-nagp-demo-ns
     
 spec:
-  ingressClassName: "gce"
+  ingressClassName: gce
   rules:
   - http:
       paths:

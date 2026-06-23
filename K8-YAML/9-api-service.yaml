@@ -3,11 +3,14 @@ kind: Service
 metadata:
   name: product-api-service
   namespace: k8-nagp-demo-ns
+  annotations:
+    # Enables container-native load balancing for faster, direct pod routing
+    cloud.google.com/neg: '{"ingress": true}'
 spec:
   selector:
     app: product-api-app
   ports:
   - port: 80
-    targetPort: http
+    targetPort: 8080
     protocol: TCP
-  type: NodePort
+  type: ClusterIP
