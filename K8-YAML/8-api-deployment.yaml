@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: product-api-container
-        image: vikassojitra/productapi-k8-demo:api-v1
+        image: vikassojitra/productapi-k8-demo:api-v2
         imagePullPolicy: Always
         resources:
           requests:
