@@ -2,12 +2,15 @@
 {
     public class Product
     {
-        public string Version { get; set; } = "Version-1";
+        public string Version { get; set; } = "Version-2";
+
         public int Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
 
         public decimal Price { get; set; }
+
+        public string PriceUnit { get; set; } = "INR";
 
         public string Category { get; set; } = string.Empty;
 
