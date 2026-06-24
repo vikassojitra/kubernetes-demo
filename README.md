@@ -33,7 +33,7 @@ The video demonstrates:
 * Rolling update strategy
 * FinOps considerations
 
-## Complrehensive Guide
+## Comprehensive Guide
 
 Path: Docs/Comprehensive Guide for Assignment Kubernetes DevOps FinOps.docx
 
