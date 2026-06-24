@@ -14,9 +14,9 @@ Product API Image: https://hub.docker.com/r/vikassojitra/productapi-k8-demo/tags
 
 API Endpoint:
 
-http://<INGRESS_IP>/products
-http://<INGRESS_IP>/products/{id}
-http://<INGRESS_IP>/Health
+- http://<INGRESS_IP>/products
+- http://<INGRESS_IP>/products/{id}
+- http://<INGRESS_IP>/Health
 
 
 ## Video Demonstration
