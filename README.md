@@ -21,7 +21,7 @@ http://<INGRESS_IP>/Health
 
 ## Video Demonstration
 
-Video path: Docs/Demo Video Recording.zip 
+Video path: https://drive.google.com/file/d/1u0ze1moIpPQvosiwpMTuAWRMYH-FLAh1/view?usp=sharing 
 
 The video demonstrates:
 
